@@ -1,0 +1,67 @@
+HolidayPlanner:
+HolidayPlanner is an AI-powered travel planning system that generates customized holiday itineraries based on user preferences like destination, budget, and duration. It ensures fair recommendations, diverse destinations, and provides visual flow diagrams of the agentic workflow.
+
+Features:
+Custom Itineraries: Generates travel plans based on user input.
+Destination Diversity: Avoids recommending the same popular destinations repeatedly.
+Budget Fairness: Supports budget ranges from economy to luxury.
+Metrics Tracking: Logs execution results for each agent.
+Flow Visualization: Generates a visual graph of the planner workflow.
+Flexible Execution: Run via CLI or deploy with Streamlit UI.
+
+Installation (Local)
+Clone the repository:
+git clone <repo_url>
+cd holidayplanner
+
+Create a virtual environment:
+python -m venv venv
+.\venv\Scripts\activate      # Windows
+source venv/bin/activate     # macOS/Linux
+
+Install dependencies:
+pip install --upgrade pip
+pip install -r requirements.txt
+
+Running the Pipeline:
+Run the complete holiday planner pipeline:
+python run_full_pipeline.py
+
+Output:
+Metrics saved in data/metrics/
+Flow diagram saved in data/graphs/
+Logs saved in logs/
+
+Running Tests:
+pytest tests/test_fairness.py -v
+
+Docker Usage:
+Build Docker Image
+docker build -t holidayplanner:latest .
+
+Run Pipeline (default):
+docker run --rm -it \
+  -v $(pwd)/data:/app/data \
+  -v $(pwd)/logs:/app/logs \
+  holidayplanner:latest
+
+Run Streamlit UI:
+docker run --rm -it -p 8501:8501 \
+  -v $(pwd)/data:/app/data \
+  -v $(pwd)/logs:/app/logs \
+  -e MODE=streamlit \
+  holidayplanner:latest
+
+Metrics & Logs:
+Execution metrics are saved in JSON format inside data/metrics/.
+Flow diagrams are saved as PNG files in data/graphs/.
+Execution logs are available in the logs/ folder.
+
+Notes:
+Ensure that all required Python packages (e.g., networkx, matplotlib) are installed.
+
+Unicode symbols (✅, ❌) in flow diagrams may not render in all environments—Dockerized fonts generally handle them correctly.
+
+License:
+MIT License
+

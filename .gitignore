@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment
+.env
+venv/
+.env/
+
+# Logs and caches
+logs/
+*.log
+.cache/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
